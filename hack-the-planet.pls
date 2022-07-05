@@ -65,7 +65,6 @@ print(nmap_hard_scan(ip))
 print_end("Scanned  Machine...")
 print_status("Here is the outputfile" ~ !ls | grep "target_scan.txt")
 
-
-# nikto scanner for webserver (port 80 or http)
-# gobuster for webserver
-
+# TODO 
+## nikto scanner for webserver (port 80 or http)
+## gobuster for webserver
