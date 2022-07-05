@@ -1,0 +1,50 @@
+# Nmap 7.92 scan initiated Tue Jul  5 21:54:29 2022 as: nmap -T4 -A --script=vuln -v -oN target_scan.txt 192.168.56.101
+Nmap scan report for 192.168.56.101
+Host is up (0.00038s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE  SERVICE  VERSION
+22/tcp  closed ssh
+80/tcp  open   http     Apache httpd
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /wp-login.php: Possible admin folder
+|   /robots.txt: Robots file
+|   /feed/: Wordpress version: 4.3.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|   /readme.html: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /image/: Potentially interesting folder
+|_http-server-header: Apache
+443/tcp open   ssl/http Apache httpd
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /wp-login.php: Possible admin folder
+|   /robots.txt: Robots file
+|   /feed/: Wordpress version: 4.3.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|   /readme.html: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /image/: Potentially interesting folder
+|_http-server-header: Apache
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Jul  5 21:57:20 2022 -- 1 IP address (1 host up) scanned in 170.51 seconds
