@@ -97,5 +97,6 @@ print_status("Here is the outputfile" ~ !ls | grep "target_scan.txt")
 ## nikto scanner for webserver (port 80 or http)
 ## gobuster for webserver
 ## if ip address doesn't fit pattern error
+## put report together
 
 # Clean
