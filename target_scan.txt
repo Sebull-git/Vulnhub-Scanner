@@ -1,1 +1,0 @@
-# Nmap 7.92 scan initiated Tue Jul  5 23:06:07 2022 as: nmap -T4 -A --script=vuln -v -oN target_scan.txt 192.168.56.101
