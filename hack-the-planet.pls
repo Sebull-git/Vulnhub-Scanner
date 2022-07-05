@@ -1,12 +1,33 @@
 #!./polaris
 # Author: Sebastian Weber
-# Description: A script to setup the enviroment for a Vulnhub machine
+# description: A script to setup the enviroment for a Vulnhub machine
+# usage: Use this if you want to want to know everything about a vulnhub machine
 
 options{
 "-s" "--streamer" as streamer_modus: "if you dont want your IP exposed activate that one"
 "-i" "--ip" (ip_saved) as ip_saved_args = "null": "If you have an IP from your target machine, put it in therer"
 }
-print("Hack the Planet Script");
+
+print(!printf "\033[0;31m author: Sebastian Weber \033[0m ");
+print(!printf "\033[0;31m description: A script to setup the enviroment for a Vulnhub machine \033[0m ");
+print("
+ __    __       ___       ______  __  ___    .___________. __    __   _______    .______    __          ___      .__   __.  _______ .___________.
+|  |  |  |     /   \     /      ||  |/  /    |           ||  |  |  | |   ____|   |   _  \  |  |        /   \     |  \ |  | |   ____||           |
+|  |__|  |    /  ^  \   |  ,----'|  '  /     `---|  |----`|  |__|  | |  |__      |  |_)  | |  |       /  ^  \    |   \|  | |  |__   `---|  |----`
+|   __   |   /  /_\  \  |  |     |    <          |  |     |   __   | |   __|     |   ___/  |  |      /  /_\  \   |  . `  | |   __|      |  |     
+|  |  |  |  /  _____  \ |  `----.|  .  \         |  |     |  |  |  | |  |____    |  |      |  `----./  _____  \  |  |\   | |  |____     |  |     
+|__|  |__| /__/     \__\ \______||__|\__\        |__|     |__|  |__| |_______|   | _|      |_______/__/     \__\ |__| \__| |_______|    |__|     
+                                                                                                                                                 
+
+")
+print("")
+print("")
+
+
+ensure("nmap");
+ensure("grep");
+ensure("cut");
+
 
 # print a Start of a process in green color 
 let print_start(status) = print(!printf "\033[0;32m [STATUS_START] \033[0m " ~ status);
@@ -68,3 +89,7 @@ print_status("Here is the outputfile" ~ !ls | grep "target_scan.txt")
 # TODO 
 ## nikto scanner for webserver (port 80 or http)
 ## gobuster for webserver
+
+
+# Clean
+!rm "-f" "target_scan.txt"
