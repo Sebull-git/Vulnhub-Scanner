@@ -1,11 +1,13 @@
 #!./polaris
 # Author: Sebastian Weber
-# description: A script to setup the enviroment for a Vulnhub machine
-# usage: Use this if you want to want to know everything about a vulnhub machine
+usage:"Use this if you want to want to know everything about a vulnhub machine"
+description:"A script to setup the enviroment for a Vulnhub machine"
+
 
 options{
 "-s" "--streamer" as streamer_modus: "if you dont want your IP exposed activate that one"
 "-i" "--ip" (ip_saved) as ip_saved_args = "null": "If you have an IP from your target machine, put it in therer"
+"-c" "--clean" as clean: "Won't run the normal program, will just clean everything"
 }
 
 print(!printf "\033[0;31m author: Sebastian Weber \033[0m ");
@@ -23,6 +25,13 @@ print("
 print("")
 print("")
 
+if clean then{
+    !rm "target_scan.txt"
+    !rm "temp.txt"
+    exit(0)
+    }
+else
+    {}
 
 ensure("nmap");
 ensure("grep");
@@ -89,7 +98,6 @@ print_status("Here is the outputfile" ~ !ls | grep "target_scan.txt")
 # TODO 
 ## nikto scanner for webserver (port 80 or http)
 ## gobuster for webserver
-
+## if ip address doesn't fit pattern error
 
 # Clean
-!rm "-f" "target_scan.txt"
