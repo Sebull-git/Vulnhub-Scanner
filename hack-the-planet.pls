@@ -9,6 +9,24 @@ options{
 "-i" "--ip" (ip_saved) as ip_saved_args = "null": "If you have an IP from your target machine, put it in therer"
 "-c" "--clean" as clean: "Won't run the normal program, will just clean everything"
 }
+# help_functions
+# print a Start of a process in green color 
+let print_start(status) = print(!printf "\033[0;32m [STATUS_START] \033[0m " ~ status);
+# print a test in a  color cyan color
+let print_test(test) = print(!printf "\033[1;36m [[TEST]] \033[0m " ~ test);
+# print a end in a yellow color
+let print_end(status) = print(!printf "\033[0;33m [STATUS_END] \033[0m " ~ status);
+# print a Status in a red color
+let print_status(status) = print(!printf "\033[0;31m [STATUS] \033[0m " ~ status);
+# print a confidential name in a purple color
+let print_conf(conf) = print(!printf "\033[0;35m [CONFIDENTIAL] \033[0m " ~ conf);
+# check if streamer mode is activated to hide confident items
+let print_confidential(conf) = if not streamer_modus then print_conf(conf) else print_conf("HIDDEN")  
+
+## ensures
+ensure("nmap");
+ensure("grep");
+ensure("cut");
 
 print(!printf "\033[0;31m author: Sebastian Weber \033[0m ");
 print(!printf "\033[0;31m description: A script to setup the enviroment for a Vulnhub machine \033[0m ");
@@ -26,32 +44,12 @@ print("")
 print("")
 
 if clean then{
-    !rm "target_scan.txt"
-    !rm "temp.txt"
+    if (!ls | grep "target_scan.txt") == ("target_scan.txt") then {!rm "target_scan.txt"} else {print_status("No target_scan.txt found")}
+    if (!ls | grep "temp.txt") == ("temp.txt") then {!rm "temp.txt"} else {print_status("No temp.txt found")}
     exit(0)
     }
 else
     {}
-
-ensure("nmap");
-ensure("grep");
-ensure("cut");
-
-
-# print a Start of a process in green color 
-let print_start(status) = print(!printf "\033[0;32m [STATUS_START] \033[0m " ~ status);
-# print a test in a  color cyan color
-let print_test(test) = print(!printf "\033[1;36m [[TEST]] \033[0m " ~ test);
-# print a end in a yellow color
-let print_end(status) = print(!printf "\033[0;33m [STATUS_END] \033[0m " ~ status);
-# print a Status in a red color
-let print_status(status) = print(!printf "\033[0;31m [STATUS] \033[0m " ~ status);
-# print a confidential name in a purple color
-let print_conf(conf) = print(!printf "\033[0;35m [CONFIDENTIAL] \033[0m " ~ conf);
-# check if streamer mode is activated to hide confident items
-let print_confidential(conf) = if not streamer_modus then print_conf(conf) else print_conf("HIDDEN")  
-
-
 
 # Starting
 print_status("Starting...")
