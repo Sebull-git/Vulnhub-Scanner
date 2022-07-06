@@ -43,9 +43,12 @@ print("
 print("")
 print("")
 
+# CLEAN
 if clean then{
+    print_start("Starting Cleaner...")
     if (!ls | grep "target_scan.txt") == ("target_scan.txt") then {!rm "target_scan.txt"} else {print_status("No target_scan.txt found")}
     if (!ls | grep "temp.txt") == ("temp.txt") then {!rm "temp.txt"} else {print_status("No temp.txt found")}
+    print_end("Completet Cleaner")
     exit(0)
     }
 else
@@ -91,12 +94,12 @@ print_start("Aggresivly scanning the machine...")
 let nmap_hard_scan(ip) = !nmap "-T4" "-A" "--script=vuln" "-v"  "-oN" "target_scan.txt" ip
 print(nmap_hard_scan(ip))
 print_end("Scanned  Machine...")
-print_status("Here is the outputfile" ~ !ls | grep "target_scan.txt")
+print_status("Here is the outputfile: " ~ !ls | grep "target_scan.txt")
+
+
 
 # TODO 
 ## nikto scanner for webserver (port 80 or http)
 ## gobuster for webserver
 ## if ip address doesn't fit pattern error
 ## put report together
-
-# Clean
